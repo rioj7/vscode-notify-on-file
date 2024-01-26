@@ -1,0 +1,34 @@
+{
+  "name": "notify-on-file",
+  "displayName": "Notify On File",
+  "description": "Show Information Message or Status bar update on file create/delete/change",
+  "version": "0.1.0",
+  "publisher": "rioj7",
+  "license": "MIT",
+  "engines": { "vscode": "^1.62.0" },
+  "categories": [ "Other" ],
+  "keywords": ["notify","file","create","delete","change","message"],
+  "galleryBanner": {"color": "#000080", "theme": "dark"},
+  "activationEvents": [ "*" ],
+  "main": "./notify-on-file",
+  "contributes": {
+    "configuration": {
+      "title": "Notify On File",
+      "properties": {
+        "notify-on-file.notify": {
+          "type": "object",
+          "default": {},
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "homepage": "https://github.com/rioj7/vscode-notify-on-file",
+  "bugs": {
+    "url": "https://github.com/rioj7/vscode-notify-on-file/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rioj7/vscode-notify-on-file.git"
+  }
+}
