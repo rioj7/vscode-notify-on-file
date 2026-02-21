@@ -1,13 +1,13 @@
 {
   "name": "notify-on-file",
   "displayName": "Notify On File",
-  "description": "Show Information Message or Status bar update on file create/delete/change",
-  "version": "0.1.0",
+  "description": "Show Information Message or Status bar update on file create/delete/change. Supports multiple watchers and autoSave action.",
+  "version": "0.2.0",
   "publisher": "rioj7",
   "license": "MIT",
   "engines": { "vscode": "^1.62.0" },
   "categories": [ "Other" ],
-  "keywords": ["notify","file","create","delete","change","message"],
+  "keywords": ["notify","file","create","delete","change","message","autosave","watcher"],
   "galleryBanner": {"color": "#000080", "theme": "dark"},
   "activationEvents": [ "*" ],
   "main": "./notify-on-file",
@@ -18,7 +18,14 @@
         "notify-on-file.notify": {
           "type": "object",
           "default": {},
-          "scope": "resource"
+          "scope": "resource",
+          "description": "Single watcher configuration (legacy, use watchers instead)"
+        },
+        "notify-on-file.watchers": {
+          "type": "array",
+          "default": [],
+          "scope": "resource",
+          "description": "Multiple watcher configurations. Each watcher can have path, globPattern, onCreate, onChange, onDelete action lists. Actions: notify, showStatusBarItem, removeStatusBarItem, autoSave."
         }
       }
     }
