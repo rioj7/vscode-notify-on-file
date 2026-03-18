@@ -2,7 +2,7 @@
 
 You can show a status bar item and/or an Information Notification when a file is created, changed or deleted.
 
-The extension use the  [`vscode.FileSystemWatcher`](https://code.visualstudio.com/api/references/vscode-api#workspace.createFileSystemWatcher). Here you can find more information on the used configuration properties.
+The extension uses the [`vscode.FileSystemWatcher`](https://code.visualstudio.com/api/references/vscode-api#workspace.createFileSystemWatcher). Here you can find more information on the used configuration properties.
 
 The current version only supports 1 file watcher.
 
@@ -11,7 +11,7 @@ The current version only supports 1 file watcher.
 The extension has the following settings:
 
 * `notify-on-file.notify` : An object with the following properties:
-  * `path` : (Optional) directory where you want to eatch for file changes. Can contain [variables](#variables). If undefined the `globPattern` will be watched for in all open workspaces. (default: undefined)
+  * `path` : (Optional) directory to watch for file changes. Can contain [variables](#variables). If undefined the `globPattern` will be watched in all open workspaces. (default: undefined)
   * `globPattern` : A [glob pattern](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) that controls for which files the watcher should report events. (default: `*.js`)
   * `onCreate` : An array with [action objects](#action-objects) for a create event.
   * `onChange` : An array with [action objects](#action-objects) for a change event.
@@ -36,9 +36,9 @@ The possible action objects are:
   * `removeStatusBarItem` : (string) the value for this property is the `id` of the status bar item.
 * `notify` : show an Information Notification  
   The object has the following properties:
-  * `notify` : (string) the text to shown in the Information Notification. Can contain [variables](#variables). The file variables use the URI of the file that has the event triggered.
+  * `notify` : (string) the text to show in the Information Notification. Can contain [variables](#variables). The file variables use the URI of the file that triggered the event.
 
-### Example
+### Example: status bar
 
 ```json
   "notify-on-file.notify": {
@@ -52,7 +52,7 @@ The possible action objects are:
       }
     ],
     "onDelete": [
-      { "removeStatusBarItem": "build" }
+      { "removeStatusBarItem": "build" },
       { "notify": "Build finished" }
     ]
   }
