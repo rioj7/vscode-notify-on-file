@@ -130,20 +130,22 @@ function getStatusBarItem(id, statusBarItems) {
   return item;
 }
 async function actions(uri, actionList, statusBarItems) {
+  const copyProperty = (dest, src, propName, transform) => {
+    let prop = getProperty(src, propName);
+    if (prop) {
+      if (transform) { prop = transform(prop); }
+      dest[propName] = prop;
+    }
+  };
   for (const action of actionList) {
     let showStatusBarItem = getProperty(action, "showStatusBarItem");
     if (showStatusBarItem) {
       let statusBarItem = getStatusBarItem(showStatusBarItem, statusBarItems);
-      let backgroundColor = getProperty(action, "backgroundColor");
-      if (backgroundColor) { statusBarItem.backgroundColor = new vscode.ThemeColor(backgroundColor); }
-      let color = getProperty(action, "color");
-      if (color) { statusBarItem.color = new vscode.ThemeColor(color); }
-      let name = getProperty(action, "name");
-      if (name) { statusBarItem.name = name; }
-      let text = getProperty(action, "text");
-      if (text) { statusBarItem.text = text; }
-      let tooltip = getProperty(action, "tooltip");
-      if (tooltip) { statusBarItem.tooltip = tooltip; }
+      copyProperty(statusBarItem, action, "backgroundColor", p => new vscode.ThemeColor(p));
+      copyProperty(statusBarItem, action, "color", p => new vscode.ThemeColor(p));
+      copyProperty(statusBarItem, action, "name");
+      copyProperty(statusBarItem, action, "text");
+      copyProperty(statusBarItem, action, "tooltip");
       statusBarItem.show();
     }
     let removeStatusBarItem = getProperty(action, "removeStatusBarItem");
